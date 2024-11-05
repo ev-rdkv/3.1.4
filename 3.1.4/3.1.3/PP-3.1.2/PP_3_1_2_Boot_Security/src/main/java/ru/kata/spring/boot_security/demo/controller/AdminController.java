@@ -34,7 +34,7 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> show(@PathVariable("id") Integer id) {
+    public ResponseEntity<User> show(@PathVariable("id") Long id) {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
@@ -45,14 +45,14 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<HttpStatus> edit(@PathVariable Integer id,
+    public ResponseEntity<HttpStatus> edit(@PathVariable Long id,
                                            @RequestBody User user) {
         userService.updateUser(id, user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }

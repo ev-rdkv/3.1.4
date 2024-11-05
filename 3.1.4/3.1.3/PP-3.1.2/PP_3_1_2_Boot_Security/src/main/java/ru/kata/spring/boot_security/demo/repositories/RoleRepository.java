@@ -7,6 +7,6 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import java.util.Optional;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByRole(String role);
 }

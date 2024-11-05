@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(Integer id) {
+    public User getUser(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
@@ -43,14 +43,14 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void updateUser(Integer id, User person) {
-        person.setId(id);
-        userRepository.save(person);
+    public void updateUser(Long id, User user) {
+        user.setId(id);
+        userRepository.save(user);
     }
 
     @Transactional
     @Override
-    public void deleteUser(Integer id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 }

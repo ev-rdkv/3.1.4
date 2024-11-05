@@ -1,15 +1,14 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 
 @Entity
@@ -19,45 +18,35 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
-
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    @Column(name = "username")
+    private Long id;
     private String username;
-
-    @Min(value = 1, message = "Enter number greater than 0")
-    @Column(name = "age")
-    private String age;
-
-    @NotEmpty(message = "Password should not be empty")
-    @Column(name = "password")
     private String password;
+    private Byte age;
 
-//    cascade = CascadeType.ALL,
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @Column(name = "role")
-    private Set<Role> role = new HashSet<>();
+    private List<Role> role = new ArrayList<>();
 
     public User() {
 
     }
 
-    public User(String username, String age, String password) {
+    public User(String username, String password, Byte age, List<Role> role) {
         this.username = username;
-        this.age = age;
         this.password = password;
+        this.age = age;
+        this.role = role;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,11 +54,11 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public String getAge() {
+    public Byte getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Byte age) {
         this.age = age;
     }
 
@@ -77,11 +66,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<Role> getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(Set<Role> role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 
