@@ -20,7 +20,7 @@ formNewUser.addEventListener('submit', newUser => {
             role: roles
         })
     }
-    fetch("http://localhost:8080/admin/new", method).then(() => {
+    fetch("/admin/new", method).then(() => {
         formNewUser.reset();
         adminPage();
         tableAdmin.click();

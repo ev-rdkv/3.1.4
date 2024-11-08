@@ -1,11 +1,11 @@
 const bodyTable = document.getElementById('tbody')
 const spann = document.getElementById('span')
 const edit = document.getElementsByClassName('btn-primary')
-fetch("http://localhost:8080/user/user_page").then((response => response.json())).then((user => authUser(user)))
+fetch("/user/user_page").then((response => response.json())).then((user => authUser(user)))
 
 function adminPage() {
     let tr = ''
-    fetch("http://localhost:8080/admin/index").then((response => response.json()))
+    fetch("/admin/index").then((response => response.json()))
         .then((users => {
             for (let user of users) {
                 tr += `<tr><td>${user.id}</td>

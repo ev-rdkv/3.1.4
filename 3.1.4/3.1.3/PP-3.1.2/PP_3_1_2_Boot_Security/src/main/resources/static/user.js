@@ -1,7 +1,7 @@
 const table = document.getElementById('tableBody')
 const spann = document.getElementById('span')
 
-fetch("http://localhost:8080/user/user_page")
+fetch("/user/user_page")
     .then((response) => {
         return response.json();
     })

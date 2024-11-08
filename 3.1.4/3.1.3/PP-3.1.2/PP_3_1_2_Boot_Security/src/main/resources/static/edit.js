@@ -3,7 +3,7 @@ let editRole = document.querySelector('#roleEdit').selectedOptions
 const editModalClose = document.getElementById('editModalClose')
 
 function editModal(id) {
-    fetch("http://localhost:8080/admin/" + id).then(response => response.json())
+    fetch("/admin/" + id).then(response => response.json())
         .then(editUser => {
             formEditUser.idEdit.value = editUser.id
             formEditUser.usernameEdit.value = editUser.username
@@ -32,7 +32,7 @@ formEditUser.addEventListener('submit', editUser => {
             role: roles
         })
     }
-    fetch("http://localhost:8080/admin/" + formEditUser.idEdit.value, method).then(() => {
+    fetch("/admin/" + formEditUser.idEdit.value, method).then(() => {
         adminPage();
         editModalClose.click();
     })
