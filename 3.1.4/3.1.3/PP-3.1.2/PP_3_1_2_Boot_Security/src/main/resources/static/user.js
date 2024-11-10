@@ -17,7 +17,7 @@ fetch("/user/user_page")
 
         let roles = `${user.role[0].role}`
         console.log(roles)
-        if (roles.indexOf("ADMIN") === -1) {
-            document.getElementById('admin').style.display = "none";
+        if (roles.includes("ADMIN")) {
+            document.getElementById('admin').style.display = "block";
         }
     });
